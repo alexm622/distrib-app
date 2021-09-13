@@ -1,11 +1,13 @@
 package com.alexcomeau.networking;
 
 public enum Operation{
-    LOGIN,
-    CREATE,
-    SUCCESS,
-    FAIL,
-    DISCONNECT,
-    DESTROY,
-    STATUS;
+    NEGOTIATE,
+    GETPRIMES,
+    GETWORK,
+    SUBMITWORK,
+    NOWORK,
+    WORK,
+    PRIMES,
+    CLOSE,
+    ACK
 }
