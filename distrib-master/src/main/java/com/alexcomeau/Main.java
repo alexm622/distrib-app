@@ -1,7 +1,5 @@
 package com.alexcomeau;
 
-import java.net.ServerSocket;
-import java.net.Socket;
 
 import com.alexcomeau.sockets.SocketManager;
 
