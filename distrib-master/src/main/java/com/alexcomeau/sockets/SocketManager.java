@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import com.alexcomeau.networking.Message;
 import com.alexcomeau.networking.Operation;
+import com.alexcomeau.threading.ThreadManager;
 import com.alexcomeau.utils.Debug;
 public class SocketManager{
 
@@ -19,17 +20,12 @@ public class SocketManager{
     public void Start(){
         try(ServerSocket ss = new ServerSocket(port)){
             Debug.debug("waiting for connection");
-            while(!ss.isClosed()){
+            while(true){
                 Socket client = ss.accept();
                 Debug.debug("accepted connection from: " + client.getRemoteSocketAddress().toString());
-                Debug.debug("getting output and input streams");
-                ObjectOutputStream oo = new ObjectOutputStream(client.getOutputStream());
-                ObjectInputStream oi = new ObjectInputStream(client.getInputStream());
-                Debug.debug("sending a test message");
-                
-                oo.writeObject(new Message(Operation.STATUS, new String[]{"test message",  ((Double)Math.random()).toString()}));
-                client.close();
+                ClientHandler ch = new ClientHandler(client, ThreadManager.incThreadCount());
 
+                new Thread(ch).start();
             }
         }catch(Exception e){
             Debug.debug(e.toString(), true);
