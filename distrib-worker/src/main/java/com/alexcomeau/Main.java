@@ -29,5 +29,12 @@ public class Main
             work = Worker.Work(work);
 
         }
+
+        
+
+        for(int i : Synchronization.primes){
+            System.out.println(i);
+        }
+        System.out.println("the number of primes is: " + Synchronization.primes.size());
     }
 }

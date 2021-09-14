@@ -14,7 +14,7 @@ public class SocketManager {
     public static Socket getSocket() throws UnknownHostException, IOException{
         Socket s = new Socket("127.0.0.1", 1000);
         if(s.isConnected()){
-            Debug.debug("connection accepted");  
+            //Debug.debug("connection accepted");  
         }
         return s;
     }
@@ -23,7 +23,7 @@ public class SocketManager {
         ArrayList<Integer> work = new ArrayList<>();
         try{
             Socket s = SocketManager.getSocket();
-            Debug.debug("getting output and input streams");
+            //Debug.debug("getting output and input streams");
             ObjectOutputStream oo = new ObjectOutputStream(s.getOutputStream());
             ObjectInputStream oi = new ObjectInputStream(s.getInputStream());
 
@@ -31,7 +31,7 @@ public class SocketManager {
             Message m = new Message(Operation.GETWORK, new ArrayList<Integer>());
             oo.writeObject(m);
             m = (Message) oi.readObject();
-            Debug.debug("response to request for work: " + m.o.toString());
+            //Debug.debug("response to request for work: " + m.o.toString());
             work = m.args;
 
             //tell the master that this node is disconnecting
@@ -54,7 +54,7 @@ public class SocketManager {
         Operation o = Operation.CONTINUE;
         try{
             Socket s = SocketManager.getSocket();
-            Debug.debug("getting output and input streams");
+            //Debug.debug("getting output and input streams");
             ObjectOutputStream oo = new ObjectOutputStream(s.getOutputStream());
             ObjectInputStream oi = new ObjectInputStream(s.getInputStream());
 
@@ -62,7 +62,7 @@ public class SocketManager {
             Message m = new Message(Operation.STATUS, new ArrayList<Integer>());
             oo.writeObject(m);
             m = (Message) oi.readObject();
-            Debug.debug("response to request for status: " + m.o.toString());
+            //Debug.debug("response to request for status: " + m.o.toString());
             o = m.o;
 
             //tell the master that this node is disconnecting

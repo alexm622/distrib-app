@@ -30,7 +30,7 @@ public class Synchronization {
     public static void requestPrimeUpdate(){
         try{
             Socket s = SocketManager.getSocket();
-            Debug.debug("getting output and input streams");
+            //Debug.debug("getting output and input streams");
             ObjectOutputStream oo = new ObjectOutputStream(s.getOutputStream());
             ObjectInputStream oi = new ObjectInputStream(s.getInputStream());
 
@@ -59,7 +59,7 @@ public class Synchronization {
     public static void submitWork(ArrayList<Integer> work){
         try{
             Socket s = SocketManager.getSocket();
-            Debug.debug("getting output and input streams");
+            //Debug.debug("getting output and input streams");
             ObjectOutputStream oo = new ObjectOutputStream(s.getOutputStream());
             ObjectInputStream oi = new ObjectInputStream(s.getInputStream());
 
@@ -67,7 +67,7 @@ public class Synchronization {
             Message m = new Message(Operation.SUBMITWORK, work);
             oo.writeObject(m);
             m = (Message) oi.readObject();
-            Debug.debug("response to work submission: " + m.o.toString());
+            //Debug.debug("response to work submission: " + m.o.toString());
 
             //tell the master that this node is disconnecting
             m = new Message(Operation.CLOSE, new ArrayList<>());

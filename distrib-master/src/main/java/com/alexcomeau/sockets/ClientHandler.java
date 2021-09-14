@@ -24,6 +24,9 @@ public class ClientHandler implements Runnable{
     private ObjectInputStream oi;
     private ObjectOutputStream oo;
 
+
+    public static final int DONE_CONST = Main.START_NUM*WorkManager.CHUNK_SIZE;
+
     public ClientHandler(Socket socket, int jobNumber){
         this.socket = socket;
         this.jobNumber = jobNumber;
@@ -32,7 +35,7 @@ public class ClientHandler implements Runnable{
 
     public void run(){
         try{
-            Debug.debug("getting output and input streams", preApp, false);
+            //Debug.debug("getting output and input streams", preApp, false);
             oo = new ObjectOutputStream(socket.getOutputStream());
             oi = new ObjectInputStream(socket.getInputStream());
             
@@ -61,7 +64,7 @@ public class ClientHandler implements Runnable{
                 ArrayList<Integer> work = new ArrayList<>();
                 work.add(p.getLeft());
                 work.add(p.getRight());
-                Debug.debug("sending work to worker", preApp);
+                //Debug.debug("sending work to worker", preApp);
                 new_m = new Message(Operation.WORK, work);
                 oo.writeObject(new_m);
                 m = (Message) oi.readObject();
@@ -69,7 +72,7 @@ public class ClientHandler implements Runnable{
                 break;
             case SUBMITWORK:
                 //recieve work
-                Debug.debug("recieving work from worker", preApp);
+                //Debug.debug("recieving work from worker", preApp);
                 ThreadData.addPrimes(m.args);
                 new_m = new Message(Operation.ACK, new ArrayList<>());
                 oo.writeObject(new_m);
@@ -79,10 +82,10 @@ public class ClientHandler implements Runnable{
             case GETPRIMES:
                 //submit primes
                 ArrayList<Integer> primes = ThreadData.getPrimes();
-                Debug.debug("Sending primes to worker", preApp);
+                //Debug.debug("Sending primes to worker", preApp);
                 ArrayList<Integer> toSend = new ArrayList<>();
                 int size = primes.size();
-                int bottom_size = size - 50;
+                int bottom_size = size - 500;
                 if(bottom_size < 0){
                     bottom_size = 0;
                 }
@@ -95,23 +98,22 @@ public class ClientHandler implements Runnable{
                 handleOperation(m);
                 break;
             case CLOSE:
-                Debug.debug("closing worker", preApp);
+                //Debug.debug("closing worker", preApp);
                 new_m = new Message(Operation.CLOSE, new ArrayList<>());
                 oo.writeObject(new_m);
                 break;
             case STATUS:
-                if(ThreadData.getLast() >= Main.GOAL){
+                if(ThreadData.getLast() - DONE_CONST >= Main.GOAL){
                     new_m = new Message(Operation.DONE, new ArrayList<Integer>());
+                    SocketManager.running.set(false);
                 }else{
                     new_m = new Message(Operation.CONTINUE, new ArrayList<Integer>());
                 }
                 oo.writeObject(new_m);
                 m = (Message) oi.readObject();
                 handleOperation(m);
-                ArrayList<Integer> curr_primes = ThreadData.getPrimes();
-                for(int i : curr_primes){
-                    Debug.debug(i + " is a prime number");
-                }
+                
+                
                 break;
             default:
                 Debug.debug("got incorrect/invalid operation from client", this.preApp, true);

@@ -10,6 +10,10 @@ public class Worker {
         int bottom = work.get(0);
         int top = work.get(1);
         ArrayList<Integer> mywork = new ArrayList<>();
+        if(bottom % 2 == 0){
+            bottom++;
+            top++;
+        }
         for(int i = bottom; i <= top; i += 2){
             
             Boolean isPrime = true;
