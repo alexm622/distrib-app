@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import com.alexcomeau.Main;
 import com.alexcomeau.networking.Message;
 import com.alexcomeau.networking.Operation;
 import com.alexcomeau.threading.ThreadData;
@@ -97,6 +98,12 @@ public class ClientHandler implements Runnable{
                 new_m = new Message(Operation.CLOSE, new ArrayList<>());
                 oo.writeObject(new_m);
                 break;
+            case STATUS:
+                if(ThreadData.getLast() >= Main.GOAL){
+                    new_m = new Message(Operation.DONE, new ArrayList<Integer>());
+                }else{
+                    new_m = new Message(Operation.CONTINUE, new ArrayList<Integer>());
+                }
             default:
                 Debug.debug("got incorrect/invalid operation from client", this.preApp, true);
         }

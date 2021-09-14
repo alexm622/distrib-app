@@ -13,6 +13,7 @@ import com.alexcomeau.networking.SocketManager;
 public class Main 
 {
     private static boolean runme = true;
+
     public static void main( String[] args ) throws Exception
     {
         //main program loop

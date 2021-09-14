@@ -10,6 +10,7 @@ import com.alexcomeau.work.WorkManager;
  */
 public class Main 
 {
+    public static final int GOAL = 10000;
     public static void main( String[] args ) throws Exception
     {
         InitialData.genInitial();
