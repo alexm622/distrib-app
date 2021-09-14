@@ -9,5 +9,8 @@ public enum Operation{
     WORK,
     PRIMES,
     CLOSE,
-    ACK
+    ACK,
+    STATUS,
+    DONE,
+    CONTINUE
 }
