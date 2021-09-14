@@ -12,7 +12,11 @@ import com.alexcomeau.networking.SocketManager;
 import com.alexcomeau.utils.Debug;
 
 public class Synchronization {
-    public static ArrayList<Integer> primes;
+    public static ArrayList<Integer> primes = new ArrayList<>();
+
+    public static void initPrimes(){
+        primes.add(2);
+    }
     
     private static void UpdatePrimes(ArrayList<Integer> recent_numbers){
         for(Integer i : recent_numbers){

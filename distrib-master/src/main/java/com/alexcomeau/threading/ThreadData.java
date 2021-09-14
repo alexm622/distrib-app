@@ -1,6 +1,7 @@
 package com.alexcomeau.threading;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -33,10 +34,15 @@ public class ThreadData {
 
     public static synchronized void addPrimes(ArrayList<Integer> new_primes){
         primes.addAll(new_primes);
+        
     }
 
     public static synchronized ArrayList<Integer> getPrimes(){
         ArrayList<Integer> copy = primes;
         return copy;
+    }
+
+    public static synchronized void sort(){
+        Collections.sort(primes);
     }
 }

@@ -51,7 +51,7 @@ public class SocketManager {
     }
 
     public static boolean isDone(){
-        Message m = new Message(Operation.CONTINUE, new ArrayList<>());
+        Operation o = Operation.CONTINUE;
         try{
             Socket s = SocketManager.getSocket();
             Debug.debug("getting output and input streams");
@@ -59,11 +59,11 @@ public class SocketManager {
             ObjectInputStream oi = new ObjectInputStream(s.getInputStream());
 
             //submit primes
-            m = new Message(Operation.STATUS, new ArrayList<Integer>());
+            Message m = new Message(Operation.STATUS, new ArrayList<Integer>());
             oo.writeObject(m);
             m = (Message) oi.readObject();
-            Debug.debug("response to request for work: " + m.o.toString());
-            
+            Debug.debug("response to request for status: " + m.o.toString());
+            o = m.o;
 
             //tell the master that this node is disconnecting
             m = new Message(Operation.CLOSE, new ArrayList<>());
@@ -78,7 +78,7 @@ public class SocketManager {
             Debug.debug(e.toString(), true);
             e.printStackTrace();
         }
-        return (m.o == Operation.DONE);
+        return (o == Operation.DONE);
     }
     
 }

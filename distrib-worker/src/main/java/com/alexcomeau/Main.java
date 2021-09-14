@@ -17,6 +17,7 @@ public class Main
     public static void main( String[] args ) throws Exception
     {
         //main program loop
+        Synchronization.initPrimes();
         ArrayList<Integer> work = new ArrayList<>();
         while(runme){
             Synchronization.requestPrimeUpdate();

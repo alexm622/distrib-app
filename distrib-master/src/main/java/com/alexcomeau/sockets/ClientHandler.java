@@ -38,6 +38,7 @@ public class ClientHandler implements Runnable{
             
             Message m = (Message) oi.readObject();
             handleOperation(m);
+            
 
             socket.close();
         }catch(Exception e){
@@ -104,6 +105,14 @@ public class ClientHandler implements Runnable{
                 }else{
                     new_m = new Message(Operation.CONTINUE, new ArrayList<Integer>());
                 }
+                oo.writeObject(new_m);
+                m = (Message) oi.readObject();
+                handleOperation(m);
+                ArrayList<Integer> curr_primes = ThreadData.getPrimes();
+                for(int i : curr_primes){
+                    Debug.debug(i + " is a prime number");
+                }
+                break;
             default:
                 Debug.debug("got incorrect/invalid operation from client", this.preApp, true);
         }
