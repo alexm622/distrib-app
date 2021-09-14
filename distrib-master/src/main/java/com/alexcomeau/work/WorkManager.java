@@ -8,16 +8,18 @@ import org.apache.commons.lang3.tuple.Pair;
 public class WorkManager {
 
     //the range/size of each chunk of work
-    private static final int CHUNK_SIZE = 50;
+    public static final int CHUNK_SIZE = 50;
 
     //create the initial pool of work
     public static void createWork(int number_of_chunks){
-        int ending = number_of_chunks*CHUNK_SIZE;
+        int ending = ThreadData.getLast();
+        int last_ending = ending;
+        ending += number_of_chunks*CHUNK_SIZE;
         for(int i = 0; i < number_of_chunks; i++){
-            int bottom = i*CHUNK_SIZE;
-            int top = (i+1)*CHUNK_SIZE;
+            int bottom = i*CHUNK_SIZE + last_ending;
+            int top = (i+1)*CHUNK_SIZE + last_ending;
             ThreadData.addWork(Pair.of(bottom, top));
-            Debug.debug("added work pair (" + bottom + "," + top + ")" + " " + i+1 + " of " + number_of_chunks);
+            //Debug.debug("added work pair (" + bottom + "," + top + ")" + " " + i+1 + " of " + number_of_chunks);
         }
         ThreadData.setLast(ending);
     }
