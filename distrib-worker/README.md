@@ -1,5 +1,4 @@
-## Distributed Prime Number Generator Worker Program
-<hr>
+<h1> Distributed Prime Number Generator Worker Program </h1>
 <h2> TODO </h2>
 <ul>
     <li>argument support for master node and master port specifications

@@ -1,5 +1,4 @@
-## Distributed Prime Number Generator
-<hr>
+<h1> Distributed Prime Number Generator </h1>
 <h2>Requirements</h2>
 <ul>
     <li> Java 11 or greater

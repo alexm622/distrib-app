@@ -1,5 +1,4 @@
 <h1> Distributed Prime Number Generator Master Program </h1>
-<hr>
 <h2>TODO</h2>
 <ul>
     <li> add argument support for goal, number of nodes, prime sync chunk size, and work chunk size for better fine tuning
@@ -8,7 +7,7 @@
     <li> optimize the prime number synchronization/generate a chunk for sync
     <li> support for config file (json?)
 </ul>
-<hr><br>
+<hr>
 <h2> HOW TO USE </h2>
 <p>modify the <code>GOAL</code> in <code>\src\main\java\com\alexcomeau\Main.java</code> for the goal ending prime  <br>
 modify the <code>CHUNK_SIZE</code> in <code>\src\main\java\com\alexcomeau\work\WorkManager.java</code> (Default: <code>50</code>) for better optimization for the worker strength and available bandwidth <br>
