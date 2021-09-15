@@ -10,7 +10,7 @@ import com.alexcomeau.work.WorkManager;
  */
 public class Main 
 {
-    public static final int GOAL = 6000;
+    public static final int GOAL = 1000000;
     public static final int START_NUM = 100;
     public static void main( String[] args ) throws Exception
     {
