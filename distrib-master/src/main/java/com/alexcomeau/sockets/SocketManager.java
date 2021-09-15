@@ -5,7 +5,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import com.alexcomeau.Main;
 import com.alexcomeau.threading.ThreadData;
 import com.alexcomeau.threading.ThreadManager;
 import com.alexcomeau.utils.Debug;
