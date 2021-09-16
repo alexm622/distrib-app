@@ -9,7 +9,7 @@ import com.alexcomeau.utils.Debug;
 public class InitialData {
 
     public static final int MULTIPLY_CONSTANT = 3;
-    private static final int INITIAL_POOL = (ThreadManager.NUM_WORKERS * WorkManager.CHUNK_SIZE)*MULTIPLY_CONSTANT;
+    public static int INITIAL_POOL = (ThreadManager.NUM_WORKERS * WorkManager.CHUNK_SIZE)*MULTIPLY_CONSTANT;
 
     public static void genInitial(){
         ArrayList<Integer> primes = ThreadData.getPrimes();

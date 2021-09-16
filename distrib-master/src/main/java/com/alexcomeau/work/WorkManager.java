@@ -8,7 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 public class WorkManager {
 
     //the range/size of each chunk of work
-    public static final int CHUNK_SIZE = 50;
+    public static int CHUNK_SIZE = 50;
 
     //create the initial pool of work
     public static void createWork(int number_of_chunks){

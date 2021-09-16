@@ -11,8 +11,11 @@ import com.alexcomeau.utils.Debug;
 
 public class SocketManager {
 
+    public static int PORT = 49155;
+    public static String IP;
+
     public static Socket getSocket() throws UnknownHostException, IOException{
-        Socket s = new Socket("127.0.0.1", 1000);
+        Socket s = new Socket(IP, PORT);
         if(s.isConnected()){
             //Debug.debug("connection accepted");  
         }

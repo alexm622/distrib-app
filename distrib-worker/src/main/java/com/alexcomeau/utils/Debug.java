@@ -11,6 +11,7 @@ import java.util.Date;
 public class Debug{
     private static final String logs = "logs/";
     private static final Date date = new Date();
+    public static String verbosity = "All";
     public static void debug(Object msg, boolean err) {
         try {
             //get the date for the name of the file

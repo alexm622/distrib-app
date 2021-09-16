@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ThreadManager {
 
-    public static final int NUM_WORKERS = 3;
+    public static int NUM_WORKERS = 3;
 
     private static AtomicInteger numThreads = new AtomicInteger(0);
 
